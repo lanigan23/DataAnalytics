@@ -1,4 +1,4 @@
-Data <- read.csv("DT-Credit.csv", header=TRUE, sep=";")
+Data <- read.csv("~/Documents/DataAnalytics/DT-Credit.csv", header=TRUE, sep=";")
 str(Data)
 attach(Data)
 DT_Model <- rpart(RESPONSE~.,data=Data, control=rpart.control(minsplit = 60, minbucket = 30, maxdepth = 4))
