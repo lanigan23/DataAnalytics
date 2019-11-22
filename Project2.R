@@ -1,6 +1,10 @@
 Data <- readxl::read_xlsx("~/Documents/DataAnalytics/Project Data.xlsx")
-#attach(Data)
+attach(Data)
 summary(Data)
+install.packages("VIM")
+library(VIM)
+install.packages("mice")
+library(mice)
 
 #Imputation using mean
 ImputeMean <- function(Data){
@@ -44,11 +48,29 @@ missing <- function(u) {
   return(x)
 }
 
-Data1 <- Data2 <- Data3 <- Data
+#Imputation using K-Nearest Neighbour
+ImputeKnn <- function(Data) {
+  d <- kNN(Data, k=5)
+  return(d[-(18:34)])
+}
+
+#Imputation using Multiple Imputation by Chained Equations
+ImputeMice <- function(Data) {
+  d <- mice(Data, m=5, method = "pmm")
+  summary(d)
+  d <- complete(d)
+  return(d)
+}
+
+Data1 <- Data2 <- Data3 <- Data4 <- Data5 <- Data
 Data1 <- ImputeMean(Data1)
 summary(Data1)
 Data2 <- ImputeMedian(Data2)
 summary(Data2)
 Data3 <- ImputeRegression(Data3)
-Data3
 summary(Data3)
+md.pattern(Data4)
+Data4 <- ImputeMice(Data4)
+summary(Data4)
+Data5 <- ImputeKnn(Data5) 
+summary(Data5)
