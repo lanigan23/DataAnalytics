@@ -1,9 +1,9 @@
 Data <- read.csv("~/Documents/DataAnalytics/PCAData.csv", header=TRUE, sep=";")
 
-# install.packages("psych")
-# install.packages("GPArotation")
-# library(psych)
-# library(GPArotation)
+install.packages("psych")
+install.packages("GPArotation")
+library(psych)
+library(GPArotation)
 
 Data <- Data[complete.cases(Data),]
 Data_corr <- cor(Data)
