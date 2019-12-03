@@ -11,13 +11,13 @@ q <- function(x) {
 samples <- list()
 for (i in 1:num.samples) {
   exp_samples <- rep(NA, sample.size)
-  U <- runif(num.samples, 5 , 10)
+  U <- runif(sample.size, 0, 1)
   for (j in 1:sample.size) {
-    u <- q(U[j])
-    exp_samples[j] <- -log(1-u/lambda)
+    exp_samples[j] = -log(1-U[j]/lambda)
   }
   samples[[i]] <- exp_samples
 }
+
 
 tests <- rep(NA, num.samples)
 for (i in 1:num.samples) {
