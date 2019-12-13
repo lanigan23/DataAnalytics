@@ -7,6 +7,7 @@ str(Data)
 Data <- Data[-1]
 names(Data)
 DT_Model <- rpart(RESPONSE~.,data=Data, control = rpart.control(minsplit=60,minbucket = 30,maxdepth = 4))
+summary(DT_Model)
 plot(as.party(DT_Model))
 print(DT_Model)
 DT_Model2 <- rpart(RESPONSE~., data=Data)

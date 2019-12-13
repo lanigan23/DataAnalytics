@@ -4,6 +4,7 @@ attach(Data)
 DT_Model <- rpart(RESPONSE~.,data=Data, control=rpart.control(minsplit = 60, minbucket = 30, maxdepth = 4))
 plot(as.party(DT_Model))
 print(DT_Model)
+summary(DT_Model)
 
 Target=ifelse(RESPONSE==1,'Y','N')
 Data <- data.frame(Data, Target)
